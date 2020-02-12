@@ -15,6 +15,7 @@ category:            Language
 build-type:          Simple
 stability:           alpha
 extra-source-files:  README.md
+                     vendor/tree-sitter-json/src/parser.c
 
 tested-with:         GHC == 8.6.5
 
