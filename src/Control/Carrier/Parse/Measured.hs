@@ -62,6 +62,7 @@ runParser blob@Blob{..} parser = case parser of
   ASTParser language ->
     time "parse.tree_sitter_ast_parse" languageTag $ do
       config <- asks config
+      when (Flag.toBool FailTestParsing (configFailParsingForTesting config)) (throw ConfigDemandedFailure)
       parseToAST (configTreeSitterParseTimeout config) language blob
         >>= either (\e -> trace (displayException e) *> throwError (SomeException e)) pure
 

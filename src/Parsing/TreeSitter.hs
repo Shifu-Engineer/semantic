@@ -31,18 +31,19 @@ import qualified Source.Source as Source
 import           Source.Span
 import qualified System.Timeout as System
 
+import qualified AST.Unmarshal as TS
 import qualified TreeSitter.Cursor as TS
 import qualified TreeSitter.Language as TS
 import qualified TreeSitter.Node as TS
 import qualified TreeSitter.Parser as TS
 import qualified TreeSitter.Tree as TS
-import qualified AST.Unmarshal as TS
 
 data TSParseException
   = ParserTimedOut
   | IncompatibleVersions
   | UnmarshalTimedOut
   | UnmarshalFailure String
+  | ConfigDemandedFailure
     deriving (Eq, Show, Generic)
 
 -- | Parse a 'Blob' with the given 'TS.Language' and return its AST.
